@@ -1,7 +1,9 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:gestion_temps/main.dart';
 import 'widgets.dart';
+//import 'package:percent_indicator/percent_indicator.dart';
 
 class PageAccueilMinuterie extends StatelessWidget {
   const PageAccueilMinuterie({Key? key}) : super(key: key);
@@ -15,30 +17,49 @@ class PageAccueilMinuterie extends StatelessWidget {
           children: [
             Row(
               children: [
-                Padding(padding: EdgeInsets.all(16.0)),
+                Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT)),
                 Expanded(
                     child: BoutonGenerique(
                         couleur: Colors.red,
-                        texte: 'ho',
+                        texte: 'Travail',
                         taille: 60.0,
                         action: methodevide)),
-                Padding(padding: EdgeInsets.all(16.0)),
+                Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT)),
                 Expanded(
                     child: BoutonGenerique(
                         couleur: Colors.green,
-                        texte: 'ho',
+                        texte: 'Pause',
                         taille: 60.0,
                         action: methodevide)),
-                Padding(padding: EdgeInsets.all(16.0)),
+                Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT)),
                 Expanded(
                     child: BoutonGenerique(
                         couleur: Colors.blue,
-                        texte: 'ho',
+                        texte: 'Maxi Pause',
                         taille: 60.0,
                         action: methodevide)),
-                Padding(padding: EdgeInsets.all(16.0)),
+                Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT)),
               ],
-            )
+            ),
+          ],
+        ),
+        bottomNavigationBar: Row(
+          children: [
+            Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT)),
+            Expanded(
+                child: BoutonGenerique(
+                    couleur: Colors.blue,
+                    texte: 'Arreter',
+                    taille: 60.0,
+                    action: methodevide)),
+            Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT)),
+            Expanded(
+                child: BoutonGenerique(
+                    couleur: Colors.blue,
+                    texte: 'Relancer',
+                    taille: 60.0,
+                    action: methodevide)),
+            Padding(padding: EdgeInsets.all(16.0))
           ],
         ));
   }
