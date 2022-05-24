@@ -14,9 +14,28 @@ class Minuteur {
   Duration _tempsTotal = Duration();
   var tempsTravail = 3;
 
+  void demarrerPause() async {
+    //await lireParametres();
+    _rayon = 1;
+
+    _temps = Duration(minutes: 5);
+    _tempsTotal = _temps;
+  }
+
   void demarrerTravail() {
     _temps = Duration(minutes: tempsTravail);
     _tempsTotal = Duration(minutes: tempsTravail);
+  }
+
+  void arreterMinuteur() {
+    _estActif = false;
+  }
+
+  void relancerMinuteur() {
+    if (_estActif == false && _temps.inMinutes > 0) {
+      _estActif = true;
+    }
+    return;
   }
 
   String retournerTemps(Duration t) {

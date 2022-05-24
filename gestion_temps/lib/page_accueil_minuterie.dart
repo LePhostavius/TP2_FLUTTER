@@ -30,14 +30,14 @@ class PageAccueilMinuterie extends StatelessWidget {
                       couleur: Colors.red,
                       texte: 'Travail',
                       taille: 45,
-                      action: aRemplacer)),
+                      action: minuteur.demarrerTravail)),
               Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT)),
               Expanded(
                   child: BoutonGenerique(
                       couleur: Colors.green,
                       texte: 'Mini pause',
                       taille: 45,
-                      action: aRemplacer)),
+                      action: minuteur.demarrerPause)),
               Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT)),
               Expanded(
                   child: BoutonGenerique(
@@ -77,16 +77,16 @@ class PageAccueilMinuterie extends StatelessWidget {
             Expanded(
                 child: BoutonGenerique(
                     couleur: Colors.teal,
-                    texte: 'Travail',
+                    texte: 'Arreter',
                     taille: 45,
-                    action: aRemplacer)),
+                    action: minuteur.arreterMinuteur)),
             Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT)),
             Expanded(
                 child: BoutonGenerique(
                     couleur: Colors.grey,
-                    texte: 'Mini pause',
+                    texte: 'Reprendre',
                     taille: 45,
-                    action: aRemplacer)),
+                    action: minuteur.relancerMinuteur)),
             Padding(padding: EdgeInsets.all(REMPLISSAGE_DEFAUT))
           ],
         ));

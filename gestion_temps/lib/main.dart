@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'page_accueil_minuterie.dart'; //a importer plus tard
+import 'page_accueil_minuterie.dart';
 
 void main() {
   runApp(MyApp());
