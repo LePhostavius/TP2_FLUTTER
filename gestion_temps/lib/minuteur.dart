@@ -1,5 +1,9 @@
 import 'dart:async';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'main.dart';
+
 class ModeleMinuteur {
   String temps;
   double pourcentage;
@@ -12,17 +16,47 @@ class Minuteur {
   bool _estActif = true;
   Duration _temps = Duration();
   Duration _tempsTotal = Duration();
-  var tempsTravail = 3;
+  int tempsTravail = 30;
+  int tempsPauseCourte = 5;
+  int tempsPauseLongue = 20;
 
-  void demarrerPause() async {
-    //await lireParametres();
-    _rayon = 1;
-
-    _temps = Duration(minutes: 5);
-    _tempsTotal = _temps;
+  void lireParametres() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    int? tempsTravail = preferences.getInt(CLE_TEMPS_TRAVAIL);
+    if (tempsTravail == null) {
+      await preferences.setInt(CLE_TEMPS_TRAVAIL, TEMPS_TRAVAIL_DEFAUT);
+      this.tempsTravail = TEMPS_TRAVAIL_DEFAUT;
+    } else {
+      this.tempsTravail = tempsTravail;
+    }
+    int? tempsPauseCourte = preferences.getInt(CLE_PAUSE_COURTE);
+    if (tempsPauseCourte == null) {
+      await preferences.setInt(CLE_PAUSE_COURTE, TEMPS_PAUSE_COURTE_DEFAUT);
+      this.tempsPauseCourte = TEMPS_PAUSE_COURTE_DEFAUT;
+    } else {
+      this.tempsPauseCourte = tempsPauseCourte;
+    }
+    int? tempsPauseLongue = preferences.getInt(CLE_PAUSE_LONGUE);
+    if (tempsPauseLongue == null) {
+      await preferences.setInt(CLE_PAUSE_LONGUE, TEMPS_PAUSE_LONGUE_DEFAUT);
+      this.tempsPauseLongue = TEMPS_PAUSE_LONGUE_DEFAUT;
+    } else {
+      this.tempsPauseLongue = tempsPauseLongue;
+    }
   }
 
-  void demarrerTravail() {
+  void demarrerPause(bool a) async {
+    lireParametres();
+    _temps = a
+        ? Duration(minutes: tempsPauseLongue)
+        : Duration(minutes: tempsPauseCourte);
+    _tempsTotal = a
+        ? Duration(minutes: tempsPauseLongue)
+        : Duration(minutes: tempsPauseCourte);
+  }
+
+  void demarrerTravail() async {
+    lireParametres();
     _temps = Duration(minutes: tempsTravail);
     _tempsTotal = Duration(minutes: tempsTravail);
   }
